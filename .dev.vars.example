@@ -1,0 +1,16 @@
+# RD-14142 — the deploy button reads THIS FILE to decide which secrets to
+# prompt for. Not a `secrets` key in wrangler.jsonc: that key belongs to an
+# experimental wrangler feature and the button ignores it, so declaring them
+# there produced a deploy with no prompts at all (observed 2026-09-02).
+#
+# Values here are PLACEHOLDERS shown as examples — never real secrets. The
+# customer types their own into Cloudflare's setup page, which is what keeps
+# them out of Rordi entirely.
+#
+# RORDI_WORKSPACE is deliberately a SECRET rather than a `var`: Workers Builds
+# re-applies the `vars` block from wrangler.jsonc on every automatic rebuild,
+# which resets it. Secrets survive. Both measured.
+
+RORDI_WORKSPACE=ws_example
+RORDI_PAIRING_CODE=pc_example
+RORDI_BRIDGE_KEY=bk_example
