@@ -35,7 +35,7 @@ import {
 } from './pairing.js'
 
 /** Bumped by an upstream release PR; surfaced in attestation. */
-export const TEMPLATE_RELEASE = '0.1.0-rd14142'
+export const TEMPLATE_RELEASE = '0.2.0-rd14142'
 
 export default {
   async fetch(request, env) {
