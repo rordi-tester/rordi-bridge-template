@@ -25,9 +25,16 @@
   // compare desired vs observed version without a Cloudflare API grant.
   "version_metadata": { "binding": "VERSION" },
 
+  // ONLY values that are OURS to set live here.
+  //
+  // Anything the CUSTOMER supplies must NOT be a var. Workers Builds runs
+  // `wrangler deploy` on every merge, which re-applies this block verbatim and
+  // RESETS whatever the customer entered. Measured: RORDI_WORKSPACE went from
+  // `ws_spike_14142` back to `""` on the first automatic build, which would
+  // silently unbind the installation from its workspace on every update.
+  // Secrets are NOT reset — so customer-supplied config belongs below.
   "vars": {
-    "RORDI_URL": "https://app.rordi.dev",
-    "RORDI_WORKSPACE": ""
+    "RORDI_URL": "https://app.rordi.dev"
   },
 
   // Prompted and stored by Cloudflare at deploy time.
@@ -38,6 +45,7 @@
   // change or break at any time". Re-verify this shape on each wrangler bump;
   // a template that fails config validation never reaches the prompt at all.
   "secrets": {
+    "RORDI_WORKSPACE": { "description": "Workspace id this install belongs to" },
     "RORDI_PAIRING_CODE": { "description": "One-time pairing code from Rordi" },
     "RORDI_BRIDGE_KEY": { "description": "Installation key from Rordi" }
   }
