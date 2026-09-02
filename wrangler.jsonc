@@ -31,5 +31,14 @@
   },
 
   // Prompted and stored by Cloudflare at deploy time.
-  "secrets": ["RORDI_PAIRING_CODE", "RORDI_BRIDGE_KEY"]
+  //
+  // MUST be an OBJECT keyed by secret name. An array is REJECTED outright:
+  // `The field "secrets" should be an object but got [...]` — verified against
+  // wrangler 4.81.1, which also warns that `secrets` is EXPERIMENTAL and "may
+  // change or break at any time". Re-verify this shape on each wrangler bump;
+  // a template that fails config validation never reaches the prompt at all.
+  "secrets": {
+    "RORDI_PAIRING_CODE": { "description": "One-time pairing code from Rordi" },
+    "RORDI_BRIDGE_KEY": { "description": "Installation key from Rordi" }
+  }
 }
