@@ -1,0 +1,17 @@
+{
+  "name": "rordi-bridge-template",
+  "private": true,
+  "cloudflare": {
+    "bindings": {
+      "RORDI_WORKSPACE": {
+        "description": "The Rordi workspace this installation belongs to. Copy it from your Rordi workspace settings page."
+      },
+      "RORDI_PAIRING_CODE": {
+        "description": "One-time pairing code from Rordi. It expires shortly and can only be used **once** — generate a fresh one if this deploy fails."
+      },
+      "RORDI_BRIDGE_KEY": {
+        "description": "Installation key from Rordi, shown next to the pairing code. This Worker signs its identity with it; Rordi never receives it from you."
+      }
+    }
+  }
+}
